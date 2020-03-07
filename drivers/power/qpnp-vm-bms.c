@@ -2213,6 +2213,7 @@ static enum power_supply_property bms_power_props[] = {
 	POWER_SUPPLY_PROP_HI_POWER,
 	POWER_SUPPLY_PROP_LOW_POWER,
 	POWER_SUPPLY_PROP_BATTERY_TYPE,
+	POWER_SUPPLY_PROP_RESISTANCE_NOW,
 	POWER_SUPPLY_PROP_TEMP,
 	POWER_SUPPLY_PROP_CYCLE_COUNT,
 };
@@ -2261,7 +2262,10 @@ static int qpnp_vm_bms_power_get_property(struct power_supply *psy,
 			val->intval += chip->dt.cfg_r_conn_mohm;
 		break;
 	case POWER_SUPPLY_PROP_RESISTANCE_NOW:
-		val->intval = get_prop_bms_rbatt(chip);
+		rc = get_batt_therm(chip, &value);
+		if (rc < 0)
+			value = BMS_DEFAULT_TEMP;
+		val->intval = get_rbatt(chip, chip->calculated_soc, value);
 		break;
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 		val->intval = get_prop_bms_current_now(chip);
