@@ -28,6 +28,7 @@
 #include <linux/gpio.h>
 #include <linux/of_platform.h>
 #include <linux/of_gpio.h>
+#include <linux/sec_class.h>
 #include <linux/spinlock.h>
 #if defined(CONFIG_QPNP_RESIN)
 #include <linux/qpnp/power-on.h>
