@@ -4,7 +4,7 @@
 
 # Each configuration option enables a list of files.
 
-obj-$(CONFIG_SENSORS_CORE)          += sensors_core.o
+obj-$(CONFIG_SENSORS_CORE)          += sensors_core.o sensors_class.o
 obj-$(CONFIG_SENSORS_SSC)           += sensors_ssc.o
 
 # accelerometer_sensor
