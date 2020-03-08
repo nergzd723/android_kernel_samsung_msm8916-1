@@ -1,6 +1,5 @@
 /*
  *  linux/kernel/sys.c
- *
  *  Copyright (C) 1991, 1992  Linus Torvalds
  */
 
@@ -403,9 +402,6 @@ static void migrate_to_reboot_cpu(void)
  */
 void kernel_restart(char *cmd)
 {
-#ifdef CONFIG_RESTART_REASON_SEC_PARAM
-	sec_param_restart_reason(cmd);
-#endif
 	kernel_restart_prepare(cmd);
 	migrate_to_reboot_cpu();
 	syscore_shutdown();
